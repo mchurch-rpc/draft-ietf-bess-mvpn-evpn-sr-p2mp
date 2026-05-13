@@ -1,13 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 
-<!-- [rfced] pre-edited and formatted by ST 01/27/26 -->
-<!-- [rfced] reference review by TH 02/18/26 -->
-
 <!-- [rfced] Note to PE:
 Errata exists for [RFC6514] as of 02/18/26; during intake, authors
 noted is wasn't relevant to this document.
 -->
-
 
 <!DOCTYPE rfc [
   <!ENTITY nbsp    "&#160;">
