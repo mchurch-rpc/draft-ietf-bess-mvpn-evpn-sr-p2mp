@@ -1,43 +1,68 @@
-﻿
+<html><head><title>wdiff draft-ietf-bess-mvpn-evpn-sr-p2mp-18.original draft-ietf-bess-mvpn-evpn-sr-p2mp-18.txt</title></head><body>
+<pre>
 
+<strike><font color='red'>Network Working Group</font></strike><strong><font color='green'>﻿
 
-
-Internet Engineering Task Force (IETF)                    R. Parekh, Ed.
-Request for Comments: 0000                                        Arrcus
-Updates: 6514, 7988                                        D. Voyer, Ed.
-Category: Standards Track                                    C. Filsfils
-ISSN: 2070-1721                                      Cisco Systems, Inc.
+Internet Engineering Task Force (IETF)</font></strong>                    R. Parekh, Ed.
+<strike><font color='red'>Internet-Draft</font></strike>
+<strong><font color='green'>Request for Comments: 0000</font></strong>                                        Arrcus
+Updates: 6514, 7988 <strike><font color='red'>(if approved)</font></strike>                                        D. Voyer, Ed.
+<strike><font color='red'>Intended status:</font></strike>
+<strong><font color='green'>Category:</font></strong> Standards Track                                    C. Filsfils
+<strike><font color='red'>Expires: 25 July 2026</font></strike>
+<strong><font color='green'>ISSN: 2070-1721</font></strong>                                      Cisco Systems, Inc.
                                                               H. Bidgoli
                                                                    Nokia
                                                                 Z. Zhang
                                                         Juniper Networks
-                                                                May 2026
-
+                                                         <strike><font color='red'>21 January</font></strike>
+                                                                <strong><font color='green'>May</font></strong> 2026
 
     Multicast and Ethernet VPN with Segment Routing P2MP and Ingress
                               Replication
+                  <strike><font color='red'>draft-ietf-bess-mvpn-evpn-sr-p2mp-18</font></strike>
 
 Abstract
 
-   A Point-to-Multipoint (P2MP) Tree in a Segment Routing (SR) domain
+   A Point-to-Multipoint (P2MP) Tree in a Segment Routing <strong><font color='green'>(SR)</font></strong> domain
    carries traffic from a Root to a set of Leaves.  This document
    specifies extensions to BGP encodings and procedures for P2MP trees
    and Ingress Replication used in BGP/MPLS IP VPNs and Ethernet VPNs in
-   a SR domain.
+   a <strike><font color='red'>Segment
+   Routing</font></strike> <strong><font color='green'>SR</font></strong> domain.
+
+<strike><font color='red'>Requirements Language
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in BCP
+   14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.</font></strike>
 
 Status of This Memo
 
-   This is an Internet Standards Track document.
+   This <strike><font color='red'>Internet-Draft</font></strike> is <strike><font color='red'>submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
 
-   This document is a product of the Internet Engineering Task Force
-   (IETF).  It represents the consensus of the IETF community.  It has
-   received public review and has been approved for publication by the
+   Internet-Drafts are working documents</font></strike> <strong><font color='green'>an Internet Standards Track document.
+
+   This document is a product</font></strong> of the Internet Engineering Task Force
+   (IETF).  <strike><font color='red'>Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list</font></strike>  <strong><font color='green'>It represents the consensus</font></strong> of <strike><font color='red'>current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid</font></strike> <strong><font color='green'>the IETF community.  It has
+   received public review and has been approved</font></strong> for <strike><font color='red'>a maximum</font></strike> <strong><font color='green'>publication by the
    Internet Engineering Steering Group (IESG).  Further information on
    Internet Standards is available in Section 2 of RFC 7841.
 
-   Information about the current status of this document, any errata,
-   and how to provide feedback on it may be obtained at
-   https://www.rfc-editor.org/info/rfc0000.
+   Information about the current status</font></strong> of <strike><font color='red'>six months</font></strike> <strong><font color='green'>this document, any errata,</font></strong>
+   and <strong><font color='green'>how to provide feedback on it</font></strong> may be <strike><font color='red'>updated, replaced, or obsoleted by other documents</font></strike> <strong><font color='green'>obtained</font></strong> at <strike><font color='red'>any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 25 July 2026.</font></strike>
+   <strong><font color='green'>https://www.rfc-editor.org/info/rfc0000.</font></strong>
 
 Copyright Notice
 
@@ -45,8 +70,9 @@ Copyright Notice
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
-   Provisions Relating to IETF Documents
-   (https://trustee.ietf.org/license-info) in effect on the date of
+   Provisions Relating to IETF Documents <strike><font color='red'>(https://trustee.ietf.org/
+   license-info)</font></strike>
+   <strong><font color='green'>(https://trustee.ietf.org/license-info)</font></strong> in effect on the date of
    publication of this document.  Please review these documents
    carefully, as they describe your rights and restrictions with respect
    to this document.  Code Components extracted from this document must
@@ -56,40 +82,49 @@ Copyright Notice
 
 Table of Contents
 
-   1.  Introduction
-     1.1.  Terminology
-     1.2.  Requirements Language
-   2.  SR P2MP P-Tunnel
-   3.  MVPN with SR
-     3.1.  SRv6 Multicast Endpoint Behaviors
+   1.  Introduction  <strike><font color='red'>. . . . . . . . . . . . . . . . . . . . . . . .   3</font></strike>
+     1.1.  Terminology <strike><font color='red'>. . . . . . . . . . . . . . . . . . . . . . .   4</font></strike>
+     <strong><font color='green'>1.2.  Requirements Language</font></strong>
+   2.  SR P2MP <strike><font color='red'>P-tunnel  . . . . . . . . . . . . . . . . . . . . . .   5</font></strike> <strong><font color='green'>P-Tunnel</font></strong>
+   3.  MVPN with SR  <strike><font color='red'>. . . . . . . . . . . . . . . . . . . . . . . .   7</font></strike>
+     3.1.  SRv6 Multicast Endpoint Behaviors <strike><font color='red'>. . . . . . . . . . . .   7</font></strike>
        3.1.1.  End.DTMC4: Decapsulation and Specific IPv4 Multicast
-               Table Lookup
+               Table Lookup  <strike><font color='red'>. . . . . . . . . . . . . . . . . . . .   7</font></strike>
        3.1.2.  End.DTMC6: Decapsulation and Specific IPv6 Multicast
-               Table Lookup
+               Table Lookup  <strike><font color='red'>. . . . . . . . . . . . . . . . . . . .   8</font></strike>
        3.1.3.  End.DTMC46: Decapsulation and Specific IP Multicast
-               Table Lookup
-     3.2.  MVPN with SR P2MP P-Tunnel
-       3.2.1.  PMSI Tunnel Attribute for SR P2MP P-Tunnel
-       3.2.2.  Auto-Discovery Procedures
-     3.3.  MVPN with Ingress Replication over SR
-       3.3.1.  SR-MPLS
-       3.3.2.  SRv6
-   4.  EVPN with SR
-     4.1.  EVPN with SR P2MP P-Tunnel
-       4.1.1.  PMSI Tunnel Attribute for SR P2MP P-Tunnel
-       4.1.2.  Split Horizon for ES Multihoming
-       4.1.3.  Auto-Discovery Procedures
-     4.2.  EVPN with Ingress Replication over SR
-       4.2.1.  SR-MPLS
-       4.2.2.  SRv6
-   5.  IANA Considerations
-   6.  Security Considerations
-   7.  References
-     7.1.  Normative References
-     7.2.  Informative References
-   Acknowledgements
-   Contributors
-   Authors' Addresses
+               Table Lookup  <strike><font color='red'>. . . . . . . . . . . . . . . . . . . .   8</font></strike>
+     3.2.  MVPN with SR P2MP <strike><font color='red'>P-tunnel  . . . . . . . . . . . . . . .   8</font></strike> <strong><font color='green'>P-Tunnel</font></strong>
+       3.2.1.  PMSI Tunnel Attribute for SR P2MP <strike><font color='red'>P-tunnel  . . . . .   8</font></strike> <strong><font color='green'>P-Tunnel</font></strong>
+       3.2.2.  Auto-Discovery <strike><font color='red'>procedures . . . . . . . . . . . . . .  11</font></strike> <strong><font color='green'>Procedures</font></strong>
+     3.3.  MVPN with Ingress Replication over SR <strike><font color='red'>. . . . . . . . . .  12</font></strike>
+       3.3.1.  SR-MPLS <strike><font color='red'>. . . . . . . . . . . . . . . . . . . . . . .  13</font></strike>
+       3.3.2.  SRv6  <strike><font color='red'>. . . . . . . . . . . . . . . . . . . . . . . .  13</font></strike>
+   4.  EVPN with SR  <strike><font color='red'>. . . . . . . . . . . . . . . . . . . . . . . .  15</font></strike>
+     4.1.  EVPN with SR P2MP <strike><font color='red'>P-tunnel  . . . . . . . . . . . . . . .  15</font></strike> <strong><font color='green'>P-Tunnel</font></strong>
+       4.1.1.  PMSI Tunnel Attribute for SR P2MP <strike><font color='red'>P-tunnel  . . . . .  15</font></strike> <strong><font color='green'>P-Tunnel</font></strong>
+       4.1.2.  Split Horizon for ES Multihoming  <strike><font color='red'>. . . . . . . . . .  17</font></strike>
+       4.1.3.  Auto-Discovery <strike><font color='red'>procedures . . . . . . . . . . . . . .  18</font></strike> <strong><font color='green'>Procedures</font></strong>
+     4.2.  EVPN with Ingress Replication over SR <strike><font color='red'>. . . . . . . . . .  19</font></strike>
+       4.2.1.  SR-MPLS <strike><font color='red'>. . . . . . . . . . . . . . . . . . . . . . .  19</font></strike>
+       4.2.2.  SRv6  <strike><font color='red'>. . . . . . . . . . . . . . . . . . . . . . . .  20</font></strike>
+   5.  <strike><font color='red'>Implementation Status . . . . . . . . . . . . . . . . . . . .  20
+     5.1.  Cisco Implementation  . . . . . . . . . . . . . . . . . .  21
+     5.2.  Nokia Implementation  . . . . . . . . . . . . . . . . . .  21
+   6.</font></strike>  IANA Considerations <strike><font color='red'>. . . . . . . . . . . . . . . . . . . . .  21
+   7.</font></strike>
+   <strong><font color='green'>6.</font></strong>  Security Considerations <strike><font color='red'>. . . . . . . . . . . . . . . . . . .  22
+   8.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  22
+   9.  Contributors  . . . . . . . . . . . . . . . . . . . . . . . .  22
+   10.</font></strike>
+   <strong><font color='green'>7.</font></strong>  References  <strike><font color='red'>. . . . . . . . . . . . . . . . . . . . . . . . .  23
+     10.1.</font></strike>
+     <strong><font color='green'>7.1.</font></strong>  Normative References <strike><font color='red'>. . . . . . . . . . . . . . . . . .  23
+     10.2.</font></strike>
+     <strong><font color='green'>7.2.</font></strong>  Informative References <strike><font color='red'>. . . . . . . . . . . . . . . . .  25</font></strike>
+   <strong><font color='green'>Acknowledgements
+   Contributors</font></strong>
+   Authors' Addresses  <strike><font color='red'>. . . . . . . . . . . . . . . . . . . . . . .  26</font></strike>
 
 1.  Introduction
 
@@ -101,17 +136,19 @@ Table of Contents
    (P-tunnels).  P-tunnels can be instantiated using different transport
    mechanisms.  For example, a service provider network that uses
    Segment Routing (SR) can use a SR Point-to-Multipoint (SR P2MP) tree
-   defined by an SR P2MP Policy [RFC9960] or SR P2MP Ingress Replication
+   defined by an SR P2MP Policy <strike><font color='red'>[I-D.ietf-pim-sr-p2mp-policy]</font></strike> <strong><font color='green'>[RFC9960]</font></strong> or SR P2MP Ingress Replication
    (IR) to instantiate P-tunnels for MVPN . This documents refers to a
    P-tunnel realized by an SR P2MP Policy as SR P2MP P-tunnel.  SR P2MP
-   P-tunnels can be instantiated both for SR-MPLS [RFC8660] and SRv6
+   P-tunnels can be instantiated both for <strike><font color='red'>SR-
+   MPLS</font></strike> <strong><font color='green'>SR-MPLS</font></strong> [RFC8660] and SRv6
    [RFC8986][RFC8754].
 
-   An SR P2MP tree is defined by an SR P2MP Policy [RFC9960] and
+   An SR P2MP tree is defined by an SR P2MP Policy
+   <strike><font color='red'>[I-D.ietf-pim-sr-p2mp-policy]</font></strike> <strong><font color='green'>[RFC9960]</font></strong> and
    instantiated via a controller such as a Path Computation Element
    (PCE).  An SR P2MP Policy consists of a Root, a set of Leaf Nodes and
-   a set of candidate paths (CPs) with optional set of constraints and/
-   or optimization objectives to be satisfied by the SR P2MP tree.  A CP
+   a set of candidate paths (CPs) with optional set of constraints <strike><font color='red'>and/or</font></strike> <strong><font color='green'>and/
+   or</font></strong> optimization objectives to be satisfied by the SR P2MP tree.  A CP
    has zero or more P2MP tree instances (PTI).
 
    This document specifies extensions to BGP auto-discovery procedures
@@ -136,10 +173,11 @@ Table of Contents
    MVPN procedures.  For EVPN procedures should refer to[RFC7432].
 
    Scalability, operational and troubleshooting considerations for SR
-   P2MP trees and Replication segments are described in [RFC9960] and
+   P2MP trees and Replication segments are described in
+   <strike><font color='red'>[I-D.ietf-pim-sr-p2mp-policy]</font></strike> <strong><font color='green'>[RFC9960]</font></strong> and
    [RFC9524] respectively.  Operations, Administration, and Maintenance
    (OAM) ping and traceroute procedures for SR P2MP Policy using SR-MPLS
-   data plane are specified in [RFC9961].
+   data plane are specified in <strike><font color='red'>[I-D.ietf-pim-p2mp-policy-ping].</font></strike> <strong><font color='green'>[RFC9961].</font></strong>
 
 1.1.  Terminology
 
@@ -171,7 +209,8 @@ Table of Contents
 
    *  Intermediate Replication node
 
-   The following terms are used as defined in [RFC9960].
+   The following terms are used as defined in
+   <strike><font color='red'>[I-D.ietf-pim-sr-p2mp-policy].</font></strike> <strong><font color='green'>[RFC9960].</font></strong>
 
    *  SR P2MP Policy
 
@@ -214,20 +253,20 @@ Table of Contents
 
    *  S-PMSI and Leaf A-D route
 
-1.2.  Requirements Language
+<strong><font color='green'>1.2.  Requirements Language
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
    "OPTIONAL" in this document are to be interpreted as described in
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
-   capitals, as shown here.
+   capitals, as shown here.</font></strong>
 
-2.  SR P2MP P-Tunnel
+2.  SR P2MP <strike><font color='red'>P-tunnel</font></strike> <strong><font color='green'>P-Tunnel</font></strong>
 
    For MVPN or EVPN, Provider Edge(PE) routers can steer customer
    traffic into a P-tunnel that can be instantiated by a SR-MPLS or SRv6
    P2MP trees.  An SR P2MP tree instance is by a Candidate path of an SR
-   P2MP Policy [RFC9960].  A P-tunnel is signalled in MVPN or EVPN A-D
+   P2MP Policy <strike><font color='red'>[I-D.ietf-pim-sr-p2mp-policy].</font></strike> <strong><font color='green'>[RFC9960].</font></strong>  A P-tunnel is signalled in MVPN or EVPN A-D
    routes using BGP PMSI Tunnel Attribute (PTA) [RFC6514].  The PTA
    identifies the P-tunnel that is used to instantiate a Provider
    Multicast Service Interface (PMSI).
@@ -236,13 +275,13 @@ Table of Contents
    |            INGRESS PE           |                   +------------+
    |  +----------+     +----------+  |                   |            |
    |  |          |     |  SR P2MP |  |    PCEP/BGP/Etc   |            |
-   |  | MVPN/EVPN+---->|  Policy  |  +------------------>| CONTROLLER |
+   |  | MVPN/EVPN+----&gt;|  Policy  |  +------------------&gt;| CONTROLLER |
    |  |  Module  |     |  Module  |  |                   |            |
    |  +----------+     +----------+  |                   |            |
    |                                 |                   +------------+
    +---------------------------------+
 
-            Figure 1: MVPN/EVPN Interaction with SR P2MP Policy
+            Figure 1: MVPN/EVPN <strike><font color='red'>interaction</font></strike> <strong><font color='green'>Interaction</font></strong> with SR P2MP Policy
 
    Above diagram show the interaction between the conceptual MVPN or
    EVPN module and SR P2MP Policy module on an ingress PE.  The ingress
@@ -250,7 +289,7 @@ Table of Contents
    with SR P2MP Policy module as shown above diagram to create and
    update SR P2MP Policy, Candidate path and the Leaf set of SR P2MP
    policies.  The SR P2MP Policy module interacts with a controller
-   using protocols such as PCEP [SR-P2MP-PCEP], BGP, NetConf, etc,.
+   using protocols such as PCEP <strike><font color='red'>[I-D.ietf-pce-sr-p2mp-policy],</font></strike> <strong><font color='green'>[SR-P2MP-PCEP],</font></strong> BGP, NetConf, etc,.
    which are outside the scope of this document.
 
    An ingress PE creates a CP of an SR P2MP Policy in the SR P2MP Policy
@@ -346,7 +385,7 @@ Table of Contents
    carried in AFI/SAFI 1/129 (MVPN-IPv4) or 2/129 (MVPN-IPv6) A-D
    routes.
 
-3.2.  MVPN with SR P2MP P-Tunnel
+3.2.  MVPN with SR P2MP <strike><font color='red'>P-tunnel</font></strike> <strong><font color='green'>P-Tunnel</font></strong>
 
    [RFC6514] defines procedures for discovering PEs participating in a
    given MVPN and binding customer multicast flows to specific
@@ -356,13 +395,13 @@ Table of Contents
    P-tunnel . In this section, the term "SR P2MP" refers to both SR-MPLS
    and SRv6 data planes.
 
-3.2.1.  PMSI Tunnel Attribute for SR P2MP P-Tunnel
+3.2.1.  PMSI Tunnel Attribute for SR P2MP <strike><font color='red'>P-tunnel</font></strike> <strong><font color='green'>P-Tunnel</font></strong>
 
    A PTA for an SR P2MP P-tunnel is constructed as specified below.
 
    *  Tunnel Type: One of below SR P2MP P-tunnel types from the
       "P-Multicast Service Interface Tunnel (PMSI Tunnel) Tunnel Types"
-      registry additions defined in this document.
+      registry additions defined in this <strike><font color='red'>document</font></strike> <strong><font color='green'>document.</font></strong>
 
       -  0x0C for SR-MPLS P2MP Tree
 
@@ -373,8 +412,9 @@ Table of Contents
    *  MPLS Label: See Section 4.1.1.1
 
    *  Tunnel Identifier: The SR P2MP P-tunnel identifies an SR P2MP
-      Policy with the identifier <Tree-ID, Root> [RFC9960] in the order
-      below:
+      Policy with the identifier &lt;Tree-ID, Root&gt;
+      <strike><font color='red'>[I-D.ietf-pim-sr-p2mp-policy]</font></strike> <strong><font color='green'>[RFC9960]</font></strong> in the order <strike><font color='red'>below,</font></strike>
+      <strong><font color='green'>below:</font></strong>
 
       -  Tree-ID: A 32-bit unsigned value that uniquely identifies an SR
          P2MP Policy at the Root.
@@ -487,7 +527,7 @@ Table of Contents
    portion of the SRv6 Multicast Service SID because the SID is not
    significant on the ingress PE.
 
-3.2.2.  Auto-Discovery Procedures
+3.2.2.  Auto-Discovery <strike><font color='red'>procedures</font></strike> <strong><font color='green'>Procedures</font></strong>
 
    MVPN auto-discovery procedures specified in [RFC6514] are used to
    advertise an SR P2MP P-tunnel and discover the leaf nodes of the SR
@@ -513,7 +553,7 @@ Table of Contents
    PTA having SR P2MP P-tunnel type, it MUST set the "Leaf Information
    Required" flag in the PTA.
 
-3.2.2.2.  Discovery of Leaf Nodes
+3.2.2.2.  Discovery of Leaf <strike><font color='red'>nodes</font></strike> <strong><font color='green'>Nodes</font></strong>
 
    An ingress PE that advertises an MVPN A-D route with PTA having SR
    P2MP P-tunnel type discovers a Leaf node of the SR P2MP Policy
@@ -561,7 +601,7 @@ Table of Contents
    Section 3 of [RFC9830].  An egress PE colors the Leaf or Intra-AS
    I-PMSI A-D route with a Color Extended Community.  The ingress PE
    replicates MVPN customer payload to the egress PE by steering it into
-   a SR-TE policy according to Section 8 of [RFC9256].  The ingress PE
+   a SR-TE policy according to <strike><font color='red'>section</font></strike> <strong><font color='green'>Section</font></strong> 8 of [RFC9256].  The ingress PE
    encapsulates the payload packet into segment list of the matching SR-
    TE policy to the egress PE along with IR MPLS label or SRv6 Multicast
    Service SID received from the egress PE.
@@ -585,8 +625,8 @@ Table of Contents
    egress PE, say PE2, sends Leaf A-D route with Extended Color
    Community C1 with Color-Only Type 0 and IR label L10 to the ingress
    PE PE1.  Assume the segment list of SR-TE policy (C1, PE2) at ingress
-   PE1 is <L1, L2, L3>, PE1 will encapsulate MVPN payload into MPLS
-   label stack <L1, L2, L3, L10> with L10 as BoS label.
+   PE1 is &lt;L1, L2, L3&gt;, PE1 will encapsulate MVPN payload into MPLS
+   label stack &lt;L1, L2, L3, L10&gt; with L10 as BoS label.
 
 3.3.2.  SRv6
 
@@ -651,7 +691,7 @@ Table of Contents
    PE2, sends Leaf A-D route with Extended color community C1 with
    Color-Only Type 0 and SRv6 Multicast Service SID S10 to the ingress
    PE PE1.  Assume the segment list of the SR-TE policy (C1, PE2) at
-   ingress PE1 is <S1, S2, S3>, PE1 will encapsulate a payload into an
+   ingress PE1 is &lt;S1, S2, S3&gt;, PE1 will encapsulate a payload into an
    IPv6 header with SRH (PE1, S1) (S10, S3, S2; SL=3) (payload).
 
 4.  EVPN with SR
@@ -666,14 +706,14 @@ Table of Contents
    P-tunnels.  It defines new BGP route types which are advertised with
    a PTA, including the S-PMSI A-D and Leaf A-D route.  The S-PMSI and
    Leaf A-D routes of [RFC9572] are analogous to MVPN S-PMSI and Leaf
-   A-D routes [RFC6514].  Note, support of Inter-AS and Inter-Region
+   A-D routes [RFC6514].  Note, support of Inter-AS and <strike><font color='red'>Inter-Regsion</font></strike> <strong><font color='green'>Inter-Region</font></strong>
    segmentation procedures in [RFC9572] with SR P2MP P-tunnels are out
    of scope of this document.
 
    Inclusive and Selective P-tunnels can be instantiated using SR P2MP
    trees or IR over SR.
 
-4.1.  EVPN with SR P2MP P-Tunnel
+4.1.  EVPN with SR P2MP <strike><font color='red'>P-tunnel</font></strike> <strong><font color='green'>P-Tunnel</font></strong>
 
    This section specifies modifications to procedures of [RFC7432] and
    [RFC9572] for SR P2MP P-tunnels.  The IMET, S-PMSI, and Leaf A-D
@@ -681,11 +721,11 @@ Table of Contents
    this section, the term "SR P2MP" refers to both SR-MPLS and SRv6 data
    planes.
 
-4.1.1.  PMSI Tunnel Attribute for SR P2MP P-Tunnel
+4.1.1.  PMSI Tunnel Attribute for SR P2MP <strike><font color='red'>P-tunnel</font></strike> <strong><font color='green'>P-Tunnel</font></strong>
 
    A PTA for an SR P2MP P-tunnel is constructed as specified in
    Section 3.2.1 except the MPLS Label and Flags fields are filled as
-   specified in Sections 4.1.1.1 and 4.1.3, respectively.
+   specified in <strike><font color='red'>Section</font></strike> <strong><font color='green'>Sections</font></strong> 4.1.1.1 and <strike><font color='red'>Section 4.1.3</font></strike> <strong><font color='green'>4.1.3,</font></strong> respectively.
 
 4.1.1.1.  MPLS Label
 
@@ -772,11 +812,11 @@ Table of Contents
 4.1.2.  Split Horizon for ES Multihoming
 
    EVPN requires split-horizon filtering with ES multihoming in order to
-   prevent duplicate BUM traffic as described in Section 8.3 of
+   prevent duplicate BUM traffic as described in Section <strike><font color='red'>8,3</font></strike> <strong><font color='green'>8.3</font></strong> of
    [RFC7432].  This section describes Split-horizon filtering procedures
    with SR P2MP P-tunnel.
 
-4.1.2.1.  SR-MPLS Filtering
+4.1.2.1.  SR-MPLS <strike><font color='red'>filtering</font></strike> <strong><font color='green'>Filtering</font></strong>
 
    The split-horizon procedures specified for P2MP MPLS LSPs in
    Section 8.3.1.2 of [RFC7432] are sufficient for SR P2MP P-tunnels.
@@ -785,7 +825,7 @@ Table of Contents
    SID label of the PTI associated with P-tunnel at the top in SR-MPLS
    encapsulation.
 
-4.1.2.2.  SRv6 Filtering
+4.1.2.2.  SRv6 <strike><font color='red'>filtering</font></strike> <strong><font color='green'>Filtering</font></strong>
 
    For SRv6, "Arg.FE2" Argument of End.DT2M SRv6 Endpoint behavior
    [RFC8986] is used for ESI-based split-horizon filtering.  For SR P2MP
@@ -804,7 +844,7 @@ Table of Contents
    horizon filtering as specified in End.DT2M forwarding behavior in
    Section 4.12 of [RFC8986].
 
-4.1.3.  Auto-Discovery Procedures
+4.1.3.  Auto-Discovery <strike><font color='red'>procedures</font></strike> <strong><font color='green'>Procedures</font></strong>
 
    EVPN auto-discovery procedures specified in [RFC7432] and [RFC9572]
    are used to advertise an SR P2MP P-tunnel and discover the leaf nodes
@@ -829,7 +869,7 @@ Table of Contents
    P-tunnel type, it MUST set the "Leaf Information Required" flag in
    the PTA.
 
-4.1.3.2.  Discovery of Leaf Nodes
+4.1.3.2.  Discovery of Leaf <strike><font color='red'>nodes</font></strike> <strong><font color='green'>Nodes</font></strong>
 
    An ingress PE that advertises an EVPN A-D route with PTA having SR
    P2MP P-tunnel type discovers a Leaf node of the SR P2MP Policy
@@ -870,7 +910,7 @@ Table of Contents
    and Color-Only Type extension specified in Section 3 of [RFC9830].
    An egress PE colors the IMET with a Color Extended Community.  The
    ingress PE replicates EVPN customer payload to the egress PE by
-   steering it into a SR-TE policy according to Section 8 of [RFC9256].
+   steering it into a SR-TE policy according to <strike><font color='red'>section</font></strike> <strong><font color='green'>Section</font></strong> 8 of [RFC9256].
    The ingress PE encapsulates the payload packet into segment list of
    the matching SR-TE policy to the egress PE along with IR MPLS label
    or SRv6 End.DT2M SID received from the egress PE.
@@ -894,8 +934,8 @@ Table of Contents
    egress PE, say PE2, sends IMET A-D route with Extended Color
    Community C1 with Color-Only Type 0 and EVPN BUM label L10 to the
    ingress PE PE1.  Assume the segment list of SR-TE policy (C1, PE2) at
-   ingress PE1 is <L1, L2, L3>, PE1 will encapsulate MVPN payload into
-   MPLS label stack <L1, L2, L3, L10> with L10 as BoS label.  Note, the
+   ingress PE1 is &lt;L1, L2, L3&gt;, PE1 will encapsulate MVPN payload into
+   MPLS label stack &lt;L1, L2, L3, L10&gt; with L10 as BoS label.  Note, the
    MPLS label stack may have ESI label at the bottom of label stack if
    ESI-based split-horizon is used.
 
@@ -909,26 +949,74 @@ Table of Contents
    PE2, sends IMET A-D route with Extended color community C1 with
    Color-Only Type 0 and SRv6 End.DT2M SID S10 to the ingress PE PE1.
    Assume the segment list of the SR-TE policy (C1, PE2) at ingress PE1
-   is <S1, S2, S3>, PE1 will encapsulate a payload into an IPv6 header
+   is &lt;S1, S2, S3&gt;, PE1 will encapsulate a payload into an IPv6 header
    with SRH (PE1, S1) (S10, S3, S2; SL=3) (payload).  Note, the End.DT2M
    SID S10 may also have an Arg.FEs Argument if ESI-based split-horizon
    filter is used.
 
-5.  IANA Considerations
+5.  <strike><font color='red'>Implementation Status
+
+   Note to the RFC Editor: please remove this section before
+   publication.  This section records the status of known
+   implementations of the protocol defined by this specification at the
+   time of posting of this Internet-Draft, and is based on a proposal
+   described in RFC7942 .  The description of implementations in this
+   section is intended to assist the IETF in its decision processes in
+   progressing drafts to RFCs.  Please note that the listing of any
+   individual implementation here does not imply endorsement by the
+   IETF.  Furthermore, no effort has been spent to verify the
+   information presented here that was supplied by IETF contributors.
+   This is not intended as, and must not be construed to be, a catalog
+   of available implementations or their features.  Readers are advised
+   to note that other implementations may exist.  According to RFC7942,
+   "this will allow reviewers and working groups to assign due
+   consideration to documents that have the benefit of running code,
+   which may serve as evidence of valuable experimentation and feedback
+   that have made the implemented protocols more mature.  It is up to
+   the individual working groups to use this information as they see
+   fit".
+
+5.1.  Cisco Implementation
+
+   Cisco has implemented MVPN procedures defined in this draft to
+   provide MVPN service with SR P2MP policies in a segment routing
+   domain.  The implementation supports SR-MPLS encapsulation and has
+   all the MUST and SHOULD clause in this draft.  The implementation is
+   at general availability maturity and is compliant with the latest
+   version of the draft.  The documentation for implementation can be
+   found at Cisco website and the point of contact is
+   abudhira@cisco.com.
+
+5.2.  Nokia Implementation
+
+   Nokia has implemented MVPN procedures specified in this draft to
+   provide MVPN service with SR P2MP policies in a segment routing
+   domain.  The implementation supports SR-MPLS encapsulation and has
+   all the MUST and SHOULD clause in this draft.  The implementation is
+   at general availability maturity and is compliant with the latest
+   version of the draft.  The documentation for implementation can be
+   found at Nokia help and the point of contact is
+   hooman.bidgoli@nokia.com.
+
+6.</font></strike>  IANA Considerations
 
    IANA has assigned the value 0x0C for "SR-MPLS P2MP Tree" in the
    "P-Multicast Service Interface Tunnel (PMSI Tunnel) Tunnel Types"
-   registry <https://www.iana.org/assignments/bgp-parameters> [RFC7385]
+   registry <strike><font color='red'>https://www.iana.org/assignments/bgp-parameters/bgp-
+   parameters.xhtml#pmsi-tunnel-types</font></strike> <strong><font color='green'>&lt;https://www.iana.org/assignments/bgp-parameters&gt;</font></strong> [RFC7385]
    in the "Border Gateway Protocol (BGP) Parameters" registry.
 
    IANA is requested to assign code point for "SRv6 P2MP Tree" in the
    "P-Multicast Service Interface Tunnel (PMSI Tunnel) Tunnel Types"
-   registry <https://www.iana.org/assignments/bgp-parameters> [RFC7385]
+   registry <strike><font color='red'>https://www.iana.org/assignments/bgp-parameters/bgp-
+   parameters.xhtml#pmsi-tunnel-types</font></strike> <strong><font color='green'>&lt;https://www.iana.org/assignments/bgp-parameters&gt;</font></strong> [RFC7385]
    in the "Border Gateway Protocol (BGP) Parameters" registry.
 
    This document requests IANA to allocate the following code points in
    "SRv6 Endpoint Behaviors" sub-registry
-   <https://www.iana.org/assignments/segment-routing> [RFC8986] of
+   <strike><font color='red'>https://www.iana.org/assignments/segment-routing/segment-
+   routing.xhtml#srv6-endpoint-behaviors</font></strike>
+   <strong><font color='green'>&lt;https://www.iana.org/assignments/segment-routing&gt;</font></strong> [RFC8986] of
    "Segment Routing Parameters" top-level registry.
 
       +=======+========+===================+===========+============+
@@ -947,156 +1035,217 @@ Table of Contents
 
              Table 1: Multicast Service SRv6 Endpoint Behaviors
 
-6.  Security Considerations
+<strike><font color='red'>7.</font></strike>
+
+<strong><font color='green'>6.</font></strong>  Security Considerations
 
    The procedures in this document do not introduce any additional
    security considerations beyond those mentioned in [RFC6513],
    [RFC6514], [RFC7432] and [RFC9572].  For general security
    considerations applicable to SR P2MP Policy and Replication segments,
-   please refer to [RFC9960] and [RFC9524] respectively.
+   please refer to <strike><font color='red'>[I-D.ietf-pim-sr-p2mp-policy]</font></strike> <strong><font color='green'>[RFC9960]</font></strong> and [RFC9524] respectively.
 
-7.  References
+<strike><font color='red'>8.  Acknowledgements
 
-7.1.  Normative References
+   The authors would like to acknowledge Luc Andre Burdet reviewing the
+   document..
+
+9.  Contributors
+
+   Zafar Ali Cisco Systems, Inc.  US
+
+   Email: zali@cisco.com
+
+   Arvind Venkateswaran Cisco Systems, Inc.  US
+
+   Email: arvvenka@cisco.com
+
+   Jayant Kotalwar Nokia Mountain View US
+
+   Email: jayant.kotalwar@nokia.com
+
+   Tanmoy Kundu Nokia Mountain View US
+
+   Email: tanmoy.kundu@nokia.com
+   Clayton Hassen Bell CanadaVancouver CA
+
+   Email: clayton.hassen@bell.ca
+
+   Mankamana Mishra Cisco Systems, Inc. US
+
+   Email: mankamis@cisco.com
+
+10.</font></strike>
+
+<strong><font color='green'>7.</font></strong>  References
+
+<strike><font color='red'>10.1.</font></strike>
+
+<strong><font color='green'>7.1.</font></strong>  Normative References
+
+   <strike><font color='red'>[I-D.ietf-pim-sr-p2mp-policy]
+              Parekh, R., Voyer, D., Filsfils, C., Bidgoli, H., and Z.
+              J. Zhang, "Segment Routing Point-to-Multipoint Policy",
+              Work in Progress, Internet-Draft, draft-ietf-pim-sr-p2mp-
+              policy-22, 4 September 2025,
+              &lt;https://datatracker.ietf.org/doc/html/draft-ietf-pim-sr-
+              p2mp-policy-22&gt;.</font></strike>
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
-              <https://www.rfc-editor.org/info/rfc2119>.
+              &lt;https://www.rfc-editor.org/info/rfc2119&gt;.
 
    [RFC6513]  Rosen, E., Ed. and R. Aggarwal, Ed., "Multicast in MPLS/
               BGP IP VPNs", RFC 6513, DOI 10.17487/RFC6513, February
-              2012, <https://www.rfc-editor.org/info/rfc6513>.
+              2012, &lt;https://www.rfc-editor.org/info/rfc6513&gt;.
 
    [RFC6514]  Aggarwal, R., Rosen, E., Morin, T., and Y. Rekhter, "BGP
               Encodings and Procedures for Multicast in MPLS/BGP IP
               VPNs", RFC 6514, DOI 10.17487/RFC6514, February 2012,
-              <https://www.rfc-editor.org/info/rfc6514>.
+              &lt;https://www.rfc-editor.org/info/rfc6514&gt;.
 
    [RFC6625]  Rosen, E., Ed., Rekhter, Y., Ed., Hendrickx, W., and R.
               Qiu, "Wildcards in Multicast VPN Auto-Discovery Routes",
               RFC 6625, DOI 10.17487/RFC6625, May 2012,
-              <https://www.rfc-editor.org/info/rfc6625>.
+              &lt;https://www.rfc-editor.org/info/rfc6625&gt;.
 
    [RFC7385]  Andersson, L. and G. Swallow, "IANA Registry for
               P-Multicast Service Interface (PMSI) Tunnel Type Code
               Points", RFC 7385, DOI 10.17487/RFC7385, October 2014,
-              <https://www.rfc-editor.org/info/rfc7385>.
+              &lt;https://www.rfc-editor.org/info/rfc7385&gt;.
 
    [RFC7432]  Sajassi, A., Ed., Aggarwal, R., Bitar, N., Isaac, A.,
               Uttaro, J., Drake, J., and W. Henderickx, "BGP MPLS-Based
               Ethernet VPN", RFC 7432, DOI 10.17487/RFC7432, February
-              2015, <https://www.rfc-editor.org/info/rfc7432>.
+              2015, &lt;https://www.rfc-editor.org/info/rfc7432&gt;.
 
    [RFC7988]  Rosen, E., Ed., Subramanian, K., and Z. Zhang, "Ingress
               Replication Tunnels in Multicast VPN", RFC 7988,
               DOI 10.17487/RFC7988, October 2016,
-              <https://www.rfc-editor.org/info/rfc7988>.
+              &lt;https://www.rfc-editor.org/info/rfc7988&gt;.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
-              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
+              May 2017, &lt;https://www.rfc-editor.org/info/rfc8174&gt;.
 
    [RFC8402]  Filsfils, C., Ed., Previdi, S., Ed., Ginsberg, L.,
               Decraene, B., Litkowski, S., and R. Shakir, "Segment
               Routing Architecture", RFC 8402, DOI 10.17487/RFC8402,
-              July 2018, <https://www.rfc-editor.org/info/rfc8402>.
+              July 2018, &lt;https://www.rfc-editor.org/info/rfc8402&gt;.
 
    [RFC8660]  Bashandy, A., Ed., Filsfils, C., Ed., Previdi, S.,
               Decraene, B., Litkowski, S., and R. Shakir, "Segment
               Routing with the MPLS Data Plane", RFC 8660,
               DOI 10.17487/RFC8660, December 2019,
-              <https://www.rfc-editor.org/info/rfc8660>.
+              &lt;https://www.rfc-editor.org/info/rfc8660&gt;.
 
    [RFC8669]  Previdi, S., Filsfils, C., Lindem, A., Ed., Sreekantiah,
               A., and H. Gredler, "Segment Routing Prefix Segment
               Identifier Extensions for BGP", RFC 8669,
               DOI 10.17487/RFC8669, December 2019,
-              <https://www.rfc-editor.org/info/rfc8669>.
+              &lt;https://www.rfc-editor.org/info/rfc8669&gt;.
 
    [RFC8754]  Filsfils, C., Ed., Dukes, D., Ed., Previdi, S., Leddy, J.,
               Matsushima, S., and D. Voyer, "IPv6 Segment Routing Header
               (SRH)", RFC 8754, DOI 10.17487/RFC8754, March 2020,
-              <https://www.rfc-editor.org/info/rfc8754>.
+              &lt;https://www.rfc-editor.org/info/rfc8754&gt;.
 
    [RFC8986]  Filsfils, C., Ed., Camarillo, P., Ed., Leddy, J., Voyer,
               D., Matsushima, S., and Z. Li, "Segment Routing over IPv6
               (SRv6) Network Programming", RFC 8986,
               DOI 10.17487/RFC8986, February 2021,
-              <https://www.rfc-editor.org/info/rfc8986>.
+              &lt;https://www.rfc-editor.org/info/rfc8986&gt;.
 
    [RFC9012]  Patel, K., Van de Velde, G., Sangli, S., and J. Scudder,
               "The BGP Tunnel Encapsulation Attribute", RFC 9012,
               DOI 10.17487/RFC9012, April 2021,
-              <https://www.rfc-editor.org/info/rfc9012>.
+              &lt;https://www.rfc-editor.org/info/rfc9012&gt;.
 
    [RFC9252]  Dawra, G., Ed., Talaulikar, K., Ed., Raszuk, R., Decraene,
               B., Zhuang, S., and J. Rabadan, "BGP Overlay Services
               Based on Segment Routing over IPv6 (SRv6)", RFC 9252,
               DOI 10.17487/RFC9252, July 2022,
-              <https://www.rfc-editor.org/info/rfc9252>.
+              &lt;https://www.rfc-editor.org/info/rfc9252&gt;.
 
    [RFC9524]  Voyer, D., Ed., Filsfils, C., Parekh, R., Bidgoli, H., and
               Z. Zhang, "Segment Routing Replication for Multipoint
               Service Delivery", RFC 9524, DOI 10.17487/RFC9524,
-              February 2024, <https://www.rfc-editor.org/info/rfc9524>.
+              February 2024, &lt;https://www.rfc-editor.org/info/rfc9524&gt;.
 
    [RFC9572]  Zhang, Z., Lin, W., Rabadan, J., Patel, K., and A.
               Sajassi, "Updates to EVPN Broadcast, Unknown Unicast, or
               Multicast (BUM) Procedures", RFC 9572,
               DOI 10.17487/RFC9572, May 2024,
-              <https://www.rfc-editor.org/info/rfc9572>.
+              &lt;https://www.rfc-editor.org/info/rfc9572&gt;.
 
    [RFC9819]  Talaulikar, K., Raza, K., Rabadan, J., and W. Lin,
               "Argument Signaling for BGP Services in Segment Routing
               over IPv6 (SRv6)", RFC 9819, DOI 10.17487/RFC9819, July
-              2025, <https://www.rfc-editor.org/info/rfc9819>.
+              2025, &lt;https://www.rfc-editor.org/info/rfc9819&gt;.
 
-   [RFC9960]  Parekh, R., Ed., Voyer, D., Ed., Filsfils, C., Bidgoli,
-              H., and Z. Zhang, "Segment Routing Point-to-Multipoint
-              Policy", RFC 9960, DOI 10.17487/RFC9960, April 2026,
-              <https://www.rfc-editor.org/info/rfc9960>.
+<strike><font color='red'>10.2.  Informative References
 
-7.2.  Informative References
+   [I-D.ietf-pce-sr-p2mp-policy]
+              Bidgoli, H., Voyer, D., Budhiraja, A.,</font></strike>
+
+   <strong><font color='green'>[RFC9960]</font></strong>  Parekh, R., <strike><font color='red'>and S.
+              Sivabalan, "PCEP extensions for SR P2MP Policy", Work in
+              Progress, Internet-Draft, draft-ietf-pce-sr-p2mp-policy-
+              13, 19 October 2025,
+              &lt;https://datatracker.ietf.org/doc/html/draft-ietf-pce-sr-
+              p2mp-policy-13&gt;.
+
+   [I-D.ietf-pim-p2mp-policy-ping]</font></strike> <strong><font color='green'>Ed., Voyer, D., Ed., Filsfils, C.,</font></strong> Bidgoli,
+              H., <strike><font color='red'>Ali, Z., Zhang, Z. J., Budhiraja, A.,</font></strike> and <strike><font color='red'>D.
+              Voyer,</font></strike> <strong><font color='green'>Z. Zhang,</font></strong> "Segment Routing <strike><font color='red'>MPLS</font></strike> Point-to-Multipoint <strike><font color='red'>(P2MP)
+              Policy Ping", Work in Progress, Internet-Draft, draft-
+              ietf-pim-p2mp-policy-ping-25, 9 October 2025,
+              &lt;https://datatracker.ietf.org/doc/html/draft-ietf-pim-
+              p2mp-policy-ping-25&gt;.</font></strike>
+              <strong><font color='green'>Policy", RFC 9960, DOI 10.17487/RFC9960, April 2026,
+              &lt;https://www.rfc-editor.org/info/rfc9960&gt;.
+
+7.2.  Informative References</font></strong>
 
    [RFC5331]  Aggarwal, R., Rekhter, Y., and E. Rosen, "MPLS Upstream
               Label Assignment and Context-Specific Label Space",
               RFC 5331, DOI 10.17487/RFC5331, August 2008,
-              <https://www.rfc-editor.org/info/rfc5331>.
+              &lt;https://www.rfc-editor.org/info/rfc5331&gt;.
 
    [RFC9251]  Sajassi, A., Thoria, S., Mishra, M., Patel, K., Drake, J.,
               and W. Lin, "Internet Group Management Protocol (IGMP) and
               Multicast Listener Discovery (MLD) Proxies for Ethernet
               VPN (EVPN)", RFC 9251, DOI 10.17487/RFC9251, June 2022,
-              <https://www.rfc-editor.org/info/rfc9251>.
+              &lt;https://www.rfc-editor.org/info/rfc9251&gt;.
 
    [RFC9256]  Filsfils, C., Talaulikar, K., Ed., Voyer, D., Bogdanov,
               A., and P. Mattes, "Segment Routing Policy Architecture",
               RFC 9256, DOI 10.17487/RFC9256, July 2022,
-              <https://www.rfc-editor.org/info/rfc9256>.
+              &lt;https://www.rfc-editor.org/info/rfc9256&gt;.
 
    [RFC9573]  Zhang, Z., Rosen, E., Lin, W., Li, Z., and IJ. Wijnands,
               "MVPN/EVPN Tunnel Aggregation with Common Labels",
               RFC 9573, DOI 10.17487/RFC9573, May 2024,
-              <https://www.rfc-editor.org/info/rfc9573>.
+              &lt;https://www.rfc-editor.org/info/rfc9573&gt;.
 
    [RFC9830]  Previdi, S., Filsfils, C., Talaulikar, K., Ed., Mattes,
               P., and D. Jain, "Advertising Segment Routing Policies in
               BGP", RFC 9830, DOI 10.17487/RFC9830, September 2025,
-              <https://www.rfc-editor.org/info/rfc9830>.
+              &lt;https://www.rfc-editor.org/info/rfc9830&gt;.
 
-   [RFC9961]  Bidgoli, H., Ed., Ali, Z., Zhang, Z., Budhiraja, A., and
+   <strong><font color='green'>[RFC9961]  Bidgoli, H., Ed., Ali, Z., Zhang, Z., Budhiraja, A., and
               D. Voyer, "MPLS Segment Routing Point-to-Multipoint (P2MP)
               Policy Ping", RFC 9961, DOI 10.17487/RFC9961, April 2026,
-              <https://www.rfc-editor.org/info/rfc9961>.
+              &lt;https://www.rfc-editor.org/info/rfc9961&gt;.
 
    [SR-P2MP-PCEP]
               Bidgoli, H., Voyer, D., Budhiraja, A., Parekh, R., and S.
               Sivabalan, "PCEP extensions for SR P2MP Policy", Work in
               Progress, Internet-Draft, draft-ietf-pce-sr-p2mp-policy-
               14, 23 February 2026,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-pce-sr-
-              p2mp-policy-14>.
+              &lt;https://datatracker.ietf.org/doc/html/draft-ietf-pce-sr-
+              p2mp-policy-14&gt;.
 
 Acknowledgements
 
@@ -1110,12 +1259,10 @@ Contributors
    United States of America
    Email: zali@cisco.com
 
-
    Arvind Venkateswaran
    Cisco Systems, Inc.
    United States of America
    Email: arvvenka@cisco.com
-
 
    Jayant Kotalwar
    Nokia
@@ -1123,13 +1270,11 @@ Contributors
    United States of America
    Email: jayant.kotalwar@nokia.com
 
-
    Tanmoy Kundu
    Nokia
    Mountain View,
    United States of America
    Email: tanmoy.kundu@nokia.com
-
 
    Clayton Hassen
    Bell
@@ -1137,12 +1282,10 @@ Contributors
    Canada
    Email: clayton.hassen@bell.ca
 
-
    Mankamana Mishra
    Cisco Systems, Inc.
    United States of America
-   Email: mankamis@cisco.com
-
+   Email: mankamis@cisco.com</font></strong>
 
 Authors' Addresses
 
@@ -1151,13 +1294,11 @@ Authors' Addresses
    United States of America
    Email: rishabh@arrcus.com
 
-
    Daniel Voyer (editor)
    Cisco Systems, Inc.
    Montreal
    Canada
    Email: davoyer@cisco.com
-
 
    Clarence Filsfils
    Cisco Systems, Inc.
@@ -1165,14 +1306,14 @@ Authors' Addresses
    Belgium
    Email: cfilsfil@cisco.com
 
-
    Hooman Bidgoli
    Nokia
    Ottawa
    Canada
    Email: hooman.bidgoli@nokia.com
 
-
    Zhaohui Zhang
    Juniper Networks
    Email: zzhang@juniper.net
+</pre>
+</body></html>

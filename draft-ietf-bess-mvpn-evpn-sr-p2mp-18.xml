@@ -1,10 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 
-<!-- [rfced] Note to PE:
-Errata exists for [RFC6514] as of 02/18/26; during intake, authors
-noted is wasn't relevant to this document.
--->
-
 <!DOCTYPE rfc [
   <!ENTITY nbsp    "&#160;">
   <!ENTITY zwsp   "&#8203;">
@@ -63,7 +58,7 @@ noted is wasn't relevant to this document.
         <email>zzhang@juniper.net</email>
       </address>
     </author>
-    <date month="January" year="2026"/>
+    <date month="May" year="2026"/>
 
     <area>RTG</area>
     <workgroup>bess</workgroup>
@@ -74,11 +69,10 @@ the title) for use on https://www.rfc-editor.org/search. -->
 <keyword>example</keyword>
 
     <abstract>
-      <t>A Point-to-Multipoint (P2MP) Tree in a Segment Routing domain carries
+      <t>A Point-to-Multipoint (P2MP) Tree in a Segment Routing (SR) domain carries
       traffic from a Root to a set of Leaves. This document specifies
       extensions to BGP encodings and procedures for P2MP trees and Ingress
-      Replication used in BGP/MPLS IP VPNs and Ethernet VPNs in a Segment
-      Routing domain.</t>
+      Replication used in BGP/MPLS IP VPNs and Ethernet VPNs in a SR domain.</t>
     </abstract>
   </front>
   <middle>
@@ -91,12 +85,12 @@ the title) for use on https://www.rfc-editor.org/search. -->
       Provider Tunnels (P-tunnels). P-tunnels can be instantiated using
       different transport mechanisms. For example, a service provider network
       that uses Segment Routing (SR) can use a SR Point-to-Multipoint (SR
-      P2MP) tree defined by an SR P2MP Policy <xref target="RFCYYY1" format="default"/> or SR P2MP Ingress Replication
+      P2MP) tree defined by an SR P2MP Policy <xref target="RFC9960" format="default"/> or SR P2MP Ingress Replication
       (IR) to instantiate P-tunnels for MVPN . This documents refers to a
       P-tunnel realized by an SR P2MP Policy as SR P2MP P-tunnel. SR P2MP
       P-tunnels can be instantiated both for SR-MPLS <xref target="RFC8660" format="default"/>
       and SRv6 <xref target="RFC8986" format="default"/><xref target="RFC8754" format="default"/>.</t>
-      <t>An SR P2MP tree is defined by an SR P2MP Policy <xref target="RFCYYY1" format="default"/> and instantiated via a controller
+      <t>An SR P2MP tree is defined by an SR P2MP Policy <xref target="RFC9960" format="default"/> and instantiated via a controller
       such as a Path Computation Element (PCE). An SR P2MP Policy consists of
       a Root, a set of Leaf Nodes and a set of candidate paths (CPs) with
       optional set of constraints and/or optimization objectives to be
@@ -129,10 +123,10 @@ Current:
       <xref target="RFC6514" format="default"/> for MVPN procedures. For EVPN procedures should
       refer to<xref target="RFC7432" format="default"/>.</t>
       <t>Scalability, operational and troubleshooting considerations for SR
-      P2MP trees and Replication segments are described in <xref target="RFCYYY1" format="default"/> and <xref target="RFC9524" format="default"/>
+      P2MP trees and Replication segments are described in <xref target="RFC9960" format="default"/> and <xref target="RFC9524" format="default"/>
       respectively. Operations, Administration, and Maintenance (OAM) ping and
       traceroute procedures for SR P2MP Policy using SR-MPLS data plane are
-      specified in <xref target="I-D.ietf-pim-p2mp-policy-ping" format="default"/>.</t>
+      specified in <xref target="RFC9961" format="default"/>.</t>
       <section numbered="true" toc="default">
         <name>Terminology</name>
         <t>The following terms are used as defined in <xref target="RFC8402" format="default"/>.</t>
@@ -177,7 +171,7 @@ Current:
             <t>Intermediate Replication node</t>
           </li>
         </ul>
-        <t>The following terms are used as defined in <xref target="RFCYYY1" format="default"/>.</t>
+        <t>The following terms are used as defined in <xref target="RFC9960" format="default"/>.</t>
         <ul spacing="normal">
           <li>
             <t>SR P2MP Policy</t>
@@ -261,17 +255,17 @@ and Multicast (BUM)".
 
     </section>
     <section anchor="SRP2MPTunnel" numbered="true" toc="default">
-      <name>SR P2MP P-tunnel</name>
+      <name>SR P2MP P-Tunnel</name>
       <t>For MVPN or EVPN, Provider Edge(PE) routers can steer customer
       traffic into a P-tunnel that can be instantiated by a SR-MPLS or SRv6
       P2MP trees. An SR P2MP tree instance is by a Candidate path of an SR
-      P2MP Policy <xref target="RFCYYY1" format="default"/>. A P-tunnel is
+      P2MP Policy <xref target="RFC9960" format="default"/>. A P-tunnel is
       signalled in MVPN or EVPN A-D routes using BGP PMSI Tunnel Attribute
       (PTA) <xref target="RFC6514" format="default"/>. The PTA identifies the P-tunnel that is
       used to instantiate a Provider Multicast Service Interface (PMSI).</t>
 
       <figure>
-        <name>MVPN/EVPN interaction with SR P2MP Policy</name>
+        <name>MVPN/EVPN Interaction with SR P2MP Policy</name>
         <artwork align="left"><![CDATA[
 +---------------------------------+
 |            INGRESS PE           |                   +------------+
@@ -376,7 +370,7 @@ and Multicast (BUM)".
         </section>
       </section>
       <section numbered="true" toc="default">
-        <name>MVPN with SR P2MP P-tunnel</name>
+        <name>MVPN with SR P2MP P-Tunnel</name>
         <t><xref target="RFC6514" format="default"/> defines procedures for discovering PEs
         participating in a given MVPN and binding customer multicast flows to
         specific P-tunnels. This section specifies modifications to these
@@ -385,7 +379,7 @@ and Multicast (BUM)".
         tree P-tunnel . In this section, the term "SR P2MP" refers to both
         SR-MPLS and SRv6 data planes.</t>
         <section anchor="MVPNPTA" numbered="true" toc="default">
-          <name>PMSI Tunnel Attribute for SR P2MP P-tunnel</name>
+          <name>PMSI Tunnel Attribute for SR P2MP P-Tunnel</name>
           <t>A PTA for an SR P2MP P-tunnel is constructed as specified
           below.</t>
 
@@ -424,7 +418,7 @@ Current:
 -->
             <li><t>Tunnel Identifier: The SR P2MP P-tunnel identifies an SR
             P2MP Policy with the identifier &lt;Tree-ID, Root&gt; <xref
-            target="RFCYYY1" format="default"/> in the
+            target="RFC9960" format="default"/> in the
             order below:</t>
               <ul spacing="normal">
                 <li><t>Tree-ID: A 32-bit unsigned value that uniquely
@@ -548,7 +542,7 @@ Current:
           </section>
         </section>
         <section anchor="MVPNAD" numbered="true" toc="default">
-          <name>Auto-Discovery procedures</name>
+          <name>Auto-Discovery Procedures</name>
           <t>MVPN auto-discovery procedures specified in <xref target="RFC6514" format="default"/> are used to advertise an SR P2MP P-tunnel and
           discover the leaf nodes of the SR P2MP Policy associated with the
           P-tunnel. This section describes the processing of MVPN A-D routes
@@ -573,7 +567,7 @@ Current:
             Information Required" flag in the PTA.</t>
           </section>
           <section numbered="true" toc="default">
-            <name>Discovery of Leaf nodes</name>
+            <name>Discovery of Leaf Nodes</name>
             <t>An ingress PE that advertises an MVPN A-D route with PTA having
             SR P2MP P-tunnel type discovers a Leaf node of the SR P2MP Policy
             associated with the SR P2MP P-tunnel when it imports an Intra-AS
@@ -730,13 +724,13 @@ Current:
       <t>Inclusive and Selective P-tunnels can be instantiated using SR P2MP
       trees or IR over SR.</t>
       <section numbered="true" toc="default">
-        <name>EVPN with SR P2MP P-tunnel</name>
+        <name>EVPN with SR P2MP P-Tunnel</name>
         <t>This section specifies modifications to procedures of <xref target="RFC7432" format="default"/> and <xref target="RFC9572" format="default"/> for SR P2MP P-tunnels.
         The IMET, S-PMSI, and Leaf A-D routes have the PTA that specifies the
         SR P2MP tree P-tunnel . In this section, the term "SR P2MP" refers to
         both SR-MPLS and SRv6 data planes.</t>
         <section numbered="true" toc="default">
-          <name>PMSI Tunnel Attribute for SR P2MP P-tunnel</name>
+          <name>PMSI Tunnel Attribute for SR P2MP P-Tunnel</name>
           <t>A PTA for an SR P2MP P-tunnel is constructed as specified in
           <xref target="MVPNPTA" format="default"/> except the MPLS Label and Flags fields are
           filled as specified in Sections <xref target="EVPNMPLSLabel" format="counter"/> and <xref target="EVPNAD" format="counter"/>, respectively.</t>
@@ -831,7 +825,7 @@ Current:
           <xref target="RFC7432" section="8.3"/>. This section describes Split-horizon
           filtering procedures with SR P2MP P-tunnel.</t>
           <section numbered="true" toc="default">
-            <name>SR-MPLS filtering</name>
+            <name>SR-MPLS Filtering</name>
             <t>The split-horizon procedures specified for P2MP MPLS LSPs in
             <xref target="RFC7432" section="8.3.1.2"/> are sufficient for SR
             P2MP P-tunnels. Note for shared SR P2MP P-tunnels, the ESI label
@@ -840,7 +834,7 @@ Current:
             at the top in SR-MPLS encapsulation.</t>
           </section>
           <section anchor="SRv6ESI" numbered="true" toc="default">
-            <name>SRv6 filtering</name>
+            <name>SRv6 Filtering</name>
             <t>For SRv6, "Arg.FE2" Argument of End.DT2M SRv6 Endpoint behavior
             <xref target="RFC8986" format="default"/> is used for ESI-based split-horizon
             filtering. For SR P2MP P-tunnel, the Arg.FE2 SID Argument is an
@@ -859,7 +853,7 @@ Current:
           </section>
         </section>
         <section anchor="EVPNAD" numbered="true" toc="default">
-          <name>Auto-Discovery procedures</name>
+          <name>Auto-Discovery Procedures</name>
           <t>EVPN auto-discovery procedures specified in <xref target="RFC7432" format="default"/> and <xref target="RFC9572" format="default"/> are used to
           advertise an SR P2MP P-tunnel and discover the leaf nodes of the SR
           P2MP Policy associated with the P-tunnel. This section describes the
@@ -879,7 +873,7 @@ Current:
             flag in the PTA.</t>
           </section>
           <section numbered="true" toc="default">
-            <name>Discovery of Leaf nodes</name>
+            <name>Discovery of Leaf Nodes</name>
             <t>An ingress PE that advertises an EVPN A-D route with PTA having
             SR P2MP P-tunnel type discovers a Leaf node of the SR P2MP Policy
             associated with the SR P2MP P-tunnel when it imports an IMET A-D
@@ -1021,39 +1015,17 @@ Current:
       security considerations beyond those mentioned in <xref target="RFC6513" format="default"/>, <xref target="RFC6514" format="default"/>, <xref target="RFC7432" format="default"/>
       and <xref target="RFC9572" format="default"/>. For general security considerations
       applicable to SR P2MP Policy and Replication segments, please refer to
-      <xref target="RFCYYY1" format="default"/> and <xref target="RFC9524" format="default"/> respectively.</t>
+      <xref target="RFC9960" format="default"/> and <xref target="RFC9524" format="default"/> respectively.</t>
     </section>
 
   </middle>
   <back>
+    <displayreference target="I-D.ietf-pce-sr-p2mp-policy" to="SR-P2MP-PCEP"/>
     <references>
       <name>References</name>
       <references>
         <name>Normative References</name>
-        <reference anchor="RFCYYY1" target="https://www.rfc-editor.org/info/rfcYYY1">
-          <front>
-            <title>Segment Routing Point-to-Multipoint Policy</title>
-            <author initials="R." surname="Parekh" fullname="Rishabh Parekh" role="editor">
-              <organization>Arrcus</organization>
-            </author>
-            <author initials="D." surname="Voyer" fullname="Daniel Voyer" role="editor">
-              <organization>Cisco Systems, Inc.</organization>
-            </author>
-            <author initials="C." surname="Filsfils" fullname="Clarence Filsfils">
-              <organization>Cisco Systems, Inc.</organization>
-            </author>
-            <author initials="H." surname="Bidgoli" fullname="Hooman Bidgoli">
-              <organization>Nokia</organization>
-            </author>
-            <author initials="Z. J." surname="Zhang" fullname="Zhaohui (Jeffrey) Zhang">
-              <organization>Juniper Networks</organization>
-            </author>
-            <date month='February' year='2026'/>
-          </front>
-          <seriesInfo name="RFC" value="YYY1"/>
-          <seriesInfo name="DOI" value="10.17487/RFCYYY1"/>
-        </reference>
-
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9960.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8402.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6513.xml"/>
@@ -1076,16 +1048,17 @@ Current:
       <references>
         <name>Informative References</name>
         
-        <!-- [rfced] [I-D.ietf-pce-sr-p2mp-policy]
+        <!-- [I-D.ietf-pce-sr-p2mp-policy]
              draft-ietf-pce-sr-p2mp-policy-13
              IESG State: I-D Exists as of 02/18/26
         -->
-        <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-pim-p2mp-policy-ping.xml"/>
 
-        <!-- [rfced]   [I-D.ietf-pim-p2mp-policy-ping]
+        <!-- [I-D.ietf-pim-p2mp-policy-ping]
              draft-ietf-pim-p2mp-policy-ping-25
              IESG State: RFC Ed Queue (EDIT) as of 02/18/26
+             published as RFC 9961
         -->
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9961.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-pce-sr-p2mp-policy.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.5331.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9573.xml"/>
@@ -1097,7 +1070,7 @@ Current:
 
     <section anchor="Acknowledgements" numbered="false" toc="default">
       <name>Acknowledgements</name>
-      <t>The authors would like to acknowledge <contact fullname="Luc Andre Burdet"/> reviewing the
+      <t>The authors would like to acknowledge <contact fullname="Luc André Burdet"/> reviewing the
       document.</t>
     </section>
 
