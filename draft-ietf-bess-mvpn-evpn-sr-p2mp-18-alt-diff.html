@@ -128,38 +128,40 @@ Table of Contents
 
 1.  Introduction
 
-   Multicast in MPLS/BGP IP VPNs [RFC6513] and BGP Encodings and
-   Procedures for Multicast in MPLS/BGP IP VPNs [RFC6514] specify
-   procedures that allow a network operator to provide Multicast VPN
-   (MVPN) service to its customers.  Multicast traffic from a customer
-   is tunneled across the service provider network over Provider Tunnels
-   (P-tunnels).  P-tunnels can be instantiated using different transport
-   mechanisms.  For example, a service provider network that uses
-   Segment Routing (SR) can use a SR Point-to-Multipoint (SR P2MP) tree
-   defined by an SR P2MP Policy <strike><font color='red'>[I-D.ietf-pim-sr-p2mp-policy]</font></strike> <strong><font color='green'>[RFC9960]</font></strong> or SR P2MP Ingress Replication
-   (IR) to instantiate P-tunnels for MVPN . This documents refers to a
-   P-tunnel realized by an SR P2MP Policy as SR P2MP P-tunnel.  SR P2MP
-   P-tunnels can be instantiated both for <strike><font color='red'>SR-
-   MPLS</font></strike> <strong><font color='green'>SR-MPLS</font></strong> [RFC8660] and SRv6
-   [RFC8986][RFC8754].
+   <strike><font color='red'>Multicast in MPLS/BGP IP VPNs</font></strike>
+
+   [RFC6513] and <strike><font color='red'>BGP Encodings and
+   Procedures for Multicast in MPLS/BGP IP VPNs</font></strike> [RFC6514] specify procedures that allow a network
+   operator to provide Multicast VPN (MVPN) service to its customers.
+   Multicast traffic from a customer is tunneled across the service
+   provider network over Provider Tunnels (P-tunnels).  P-tunnels can be
+   instantiated using different transport mechanisms.  For example, a
+   service provider network that uses Segment Routing (SR) can use a SR
+   Point-to-Multipoint <strike><font color='red'>(SR P2MP)</font></strike> <strong><font color='green'>(P2MP)</font></strong> tree defined by an SR P2MP Policy <strike><font color='red'>[I-D.ietf-pim-sr-p2mp-policy]</font></strike>
+   <strong><font color='green'>[RFC9960]</font></strong> or SR P2MP Ingress Replication (IR) to instantiate
+   P-tunnels for MVPN . This documents refers to a P-tunnel realized by
+   an SR P2MP Policy as <strong><font color='green'>an</font></strong> SR P2MP P-tunnel.  SR P2MP P-tunnels can be
+   instantiated both for <strike><font color='red'>SR-</font></strike> <strong><font color='green'>Segment Routing over</font></strong> MPLS <strong><font color='green'>(SR-MPLS)</font></strong> [RFC8660]
+   and <strike><font color='red'>SRv6 [RFC8986][RFC8754].</font></strike> <strong><font color='green'>Segment Routing over IPv6 (SRv6) [RFC8986] [RFC8754].</font></strong>
 
    An SR P2MP tree is defined by an SR P2MP Policy
    <strike><font color='red'>[I-D.ietf-pim-sr-p2mp-policy]</font></strike> <strong><font color='green'>[RFC9960]</font></strong> and
    instantiated via a controller such as a Path Computation Element
-   (PCE).  An SR P2MP Policy consists of a Root, a set of Leaf Nodes and
-   a set of candidate paths (CPs) with optional set of constraints <strike><font color='red'>and/or</font></strike> <strong><font color='green'>and/
-   or</font></strong> optimization objectives to be satisfied by the SR P2MP tree.  A CP
-   has zero or more P2MP tree instances (PTI).
+   (PCE).  An SR P2MP Policy consists of a Root, a set of Leaf <strike><font color='red'>Nodes</font></strike> <strong><font color='green'>Nodes,</font></strong>
+   and a set of candidate paths (CPs) with optional set of constraints
+   and/or optimization objectives to be satisfied by the SR P2MP tree.
+   A CP has zero or more P2MP tree instances (PTI).
 
    This document specifies extensions to BGP auto-discovery procedures
    specified in [RFC6514] for P-tunnels constructed with a PTI.  Use of
    Protocol Independent Multicast (PIM) for auto-discovery is outside
-   scope of this document.  Support for customer Bidirectional PIM
+   <strong><font color='green'>the</font></strong> scope of this document.  Support for customer Bidirectional PIM
    (BIDIR-PIM) is outside the scope of this document.
 
    This document extends procedures for MVPN service with IR over SR-
-   MPLS [RFC7988] data plane with an SLA.  New procedures are defined
-   for MVPN service with IR over SRv6 data plane with or without an SLA.
+   MPLS [RFC7988] data plane with <strike><font color='red'>an SLA.</font></strike> <strong><font color='green'>a Service Level Agreement (SLA).</font></strong>  New
+   procedures are defined for MVPN service with IR over SRv6 data plane
+   with or without an SLA.
 
    This document defines new SRv6 endpoint behaviors [RFC8986] used for
    MVPN with SR P2MP and IR P-tunnels.
@@ -169,19 +171,19 @@ Table of Contents
    traffic.  These P-tunnels can be instantiated by SR-MPLS or SRv6 P2MP
    trees.
 
-   The reader is expected to be familiar with [RFC6513], [RFC6514] for
-   MVPN procedures.  For EVPN procedures should refer to[RFC7432].
+   The reader is expected to be familiar with <strike><font color='red'>[RFC6513],</font></strike> <strong><font color='green'>[RFC6513] and</font></strong> [RFC6514]
+   for MVPN procedures.  For EVPN <strike><font color='red'>procedures should</font></strike> <strong><font color='green'>procedures,</font></strong> refer <strike><font color='red'>to[RFC7432].</font></strike> <strong><font color='green'>to [RFC7432].</font></strong>
 
-   Scalability, operational and troubleshooting considerations for SR
+   Scalability, <strike><font color='red'>operational</font></strike> <strong><font color='green'>operational,</font></strong> and troubleshooting considerations for SR
    P2MP trees and Replication segments are described in
-   <strike><font color='red'>[I-D.ietf-pim-sr-p2mp-policy]</font></strike> <strong><font color='green'>[RFC9960]</font></strong> and
-   [RFC9524] respectively.  Operations, Administration, and Maintenance
-   (OAM) ping and traceroute procedures for SR P2MP Policy using SR-MPLS
-   data plane are specified in <strike><font color='red'>[I-D.ietf-pim-p2mp-policy-ping].</font></strike> <strong><font color='green'>[RFC9961].</font></strong>
+   <strike><font color='red'>[I-D.ietf-pim-sr-p2mp-policy]</font></strike> <strong><font color='green'>[RFC9960]</font></strong> and <strike><font color='red'>[RFC9524]</font></strike>
+   <strong><font color='green'>[RFC9524],</font></strong> respectively.  Operations, Administration, and Maintenance
+   (OAM) ping and traceroute procedures for SR P2MP Policy using <strike><font color='red'>SR-MPLS</font></strike> <strong><font color='green'>the SR-
+   MPLS</font></strong> data plane are specified in <strike><font color='red'>[I-D.ietf-pim-p2mp-policy-ping].</font></strike> <strong><font color='green'>[RFC9961].</font></strong>
 
 1.1.  Terminology
 
-   The following terms are used as defined in [RFC8402].
+   The following terms are used as defined in <strike><font color='red'>[RFC8402].</font></strike> <strong><font color='green'>[RFC8402]:</font></strong>
 
    *  Segment Routing (SR)
 
@@ -195,35 +197,40 @@ Table of Contents
 
    *  SRv6 SID
 
-   The following terms are used as defined in [RFC8754].
+   The following terms are used as defined in <strike><font color='red'>[RFC8754].</font></strike> <strong><font color='green'>[RFC8754]:</font></strong>
 
    *  Segment Routing Header (SRH)
 
-   The following terms are used as defined in [RFC9524].
+   The following terms are used as defined in <strike><font color='red'>[RFC9524].</font></strike> <strong><font color='green'>[RFC9524]:</font></strong>
 
    *  Replication segment
 
    *  Replication-SID
 
-   *  Root, Leaf and Bud node
+   *  <strike><font color='red'>Root,</font></strike>  <strong><font color='green'>Root node
+
+   *</font></strong>  Leaf <strike><font color='red'>and</font></strike> <strong><font color='green'>node
+
+   *</font></strong>  Bud node
 
    *  Intermediate Replication node
 
    The following terms are used as defined in
-   <strike><font color='red'>[I-D.ietf-pim-sr-p2mp-policy].</font></strike> <strong><font color='green'>[RFC9960].</font></strong>
+   <strike><font color='red'>[I-D.ietf-pim-sr-p2mp-policy].</font></strike> <strong><font color='green'>[RFC9960]:</font></strong>
 
    *  SR P2MP Policy
 
    *  Tree-ID
 
-   *  Candidate Path (CP)
+   *  Candidate <strike><font color='red'>Path</font></strike> <strong><font color='green'>path</font></strong> (CP)
 
-   *  P2MP Tree instance (PTI)
+   *  P2MP <strike><font color='red'>Tree</font></strike> <strong><font color='green'>tree</font></strong> instance (PTI)
 
    *  Tree-SID
 
    For MVPN, the following terms are used as defined in [RFC6513] and
-   [RFC6514].
+   <strike><font color='red'>[RFC6514].</font></strike>
+   <strong><font color='green'>[RFC6514]:</font></strong>
 
    *  P-Multicast Service Interface (PMSI)
 
@@ -233,11 +240,18 @@ Table of Contents
 
    *  Auto-Discovery (A-D) routes
 
-   *  Intra-AS I-PMSI A-D, Inter-AS I-PMSI A-D, S-PMSI A-D, and Leaf A-D
-      routes
+   *  Intra-AS I-PMSI <strike><font color='red'>A-D,</font></strike> <strong><font color='green'>A-D
+
+   *</font></strong>  Inter-AS I-PMSI <strike><font color='red'>A-D,</font></strike> <strong><font color='green'>A-D
+
+   *</font></strong>  S-PMSI <strike><font color='red'>A-D, and</font></strike> <strong><font color='green'>A-D
+
+   *</font></strong>  Leaf A-D
+      <strike><font color='red'>routes</font></strike> <strong><font color='green'>route</font></strong>
 
    For EVPN, the following terms are used as defined in [RFC7432],
-   [RFC9251] and [RFC9572].
+   <strike><font color='red'>[RFC9251]</font></strike>
+   <strong><font color='green'>[RFC9251],</font></strong> and <strike><font color='red'>[RFC9572].</font></strike> <strong><font color='green'>[RFC9572]:</font></strong>
 
    *  EVPN Instance (EVI)
 
@@ -249,9 +263,11 @@ Table of Contents
 
    *  Selective Multicast Ethernet Tag (SMET) route
 
-   *  Broadcast, Unknown Unicast and Multicast (BUM)
+   *  Broadcast, Unknown Unicast <strike><font color='red'>and</font></strike> <strong><font color='green'>or</font></strong> Multicast (BUM)
 
-   *  S-PMSI and Leaf A-D route
+   *  S-PMSI <strike><font color='red'>and</font></strike>
+
+   <strong><font color='green'>*</font></strong>  Leaf A-D route
 
 <strong><font color='green'>1.2.  Requirements Language
 
@@ -263,18 +279,17 @@ Table of Contents
 
 2.  SR P2MP <strike><font color='red'>P-tunnel</font></strike> <strong><font color='green'>P-Tunnel</font></strong>
 
-   For MVPN or EVPN, Provider Edge(PE) routers can steer customer
-   traffic into a P-tunnel that can be instantiated by a SR-MPLS or SRv6
-   P2MP trees.  An SR P2MP tree instance is by a Candidate path of an SR
-   P2MP Policy <strike><font color='red'>[I-D.ietf-pim-sr-p2mp-policy].</font></strike> <strong><font color='green'>[RFC9960].</font></strong>  A P-tunnel is signalled in MVPN or EVPN A-D
-   routes using BGP PMSI Tunnel Attribute (PTA) [RFC6514].  The PTA
-   identifies the P-tunnel that is used to instantiate a Provider
-   Multicast Service Interface (PMSI).
+   For MVPN or EVPN, Provider <strike><font color='red'>Edge(PE)</font></strike> <strong><font color='green'>Edge (PE)</font></strong> routers can steer customer
+   traffic into a P-tunnel that can be instantiated by <strike><font color='red'>a</font></strike> <strong><font color='green'>an</font></strong> SR-MPLS or
+   SRv6 P2MP trees.  An SR <strike><font color='red'>P2MP tree instance</font></strike> <strong><font color='green'>PTI</font></strong> is by a <strike><font color='red'>Candidate path</font></strike> <strong><font color='green'>CP</font></strong> of an SR P2MP Policy <strike><font color='red'>[I-D.ietf-pim-sr-p2mp-policy].</font></strike>
+   <strong><font color='green'>[RFC9960].</font></strong>  A P-tunnel is signalled in MVPN or EVPN A-D routes using
+   <strong><font color='green'>the</font></strong> BGP PMSI Tunnel Attribute (PTA) [RFC6514].  The PTA identifies
+   the P-tunnel that is used to instantiate a <strike><font color='red'>Provider Multicast Service Interface (PMSI).</font></strike> <strong><font color='green'>PMSI.</font></strong>
 
    +---------------------------------+
    |            INGRESS PE           |                   +------------+
    |  +----------+     +----------+  |                   |            |
-   |  |          |     |  SR P2MP |  |    PCEP/BGP/Etc   |            |
+   |  |          |     |  SR P2MP |  |    <strike><font color='red'>PCEP/BGP/Etc</font></strike>    <strong><font color='green'>PCEP/BGP/etc.</font></strong>  |            |
    |  | MVPN/EVPN+----&gt;|  Policy  |  +------------------&gt;| CONTROLLER |
    |  |  Module  |     |  Module  |  |                   |            |
    |  +----------+     +----------+  |                   |            |
@@ -283,14 +298,16 @@ Table of Contents
 
             Figure 1: MVPN/EVPN <strike><font color='red'>interaction</font></strike> <strong><font color='green'>Interaction</font></strong> with SR P2MP Policy
 
-   Above diagram show the interaction between the conceptual MVPN or
+   <strike><font color='red'>Above diagram show</font></strike>
+
+   <strong><font color='green'>The figure above shows</font></strong> the interaction between the conceptual MVPN or
    EVPN module and SR P2MP Policy module on an ingress PE.  The ingress
-   PE participates in MVPN or EVPN autodDiscovery procedures interacts
-   with SR P2MP Policy module as shown above diagram to create and
-   update SR P2MP Policy, Candidate path and the Leaf set of SR P2MP
-   policies.  The SR P2MP Policy module interacts with a controller
-   using protocols such as PCEP <strike><font color='red'>[I-D.ietf-pce-sr-p2mp-policy],</font></strike> <strong><font color='green'>[SR-P2MP-PCEP],</font></strong> BGP, NetConf, etc,.
-   which are outside the scope of this document.
+   PE participates in MVPN or EVPN <strike><font color='red'>autodDiscovery</font></strike> <strong><font color='green'>AD</font></strong> procedures <strong><font color='green'>and</font></strong> interacts with <strong><font color='green'>the</font></strong>
+   SR P2MP Policy module as shown above <strike><font color='red'>diagram</font></strike> to create and update <strong><font color='green'>the</font></strong> SR P2MP
+   Policy, <strike><font color='red'>Candidate path</font></strike> <strong><font color='green'>CP,</font></strong> and the Leaf set of SR P2MP policies.  The SR P2MP Policy
+   module interacts with a controller using protocols such as PCEP <strike><font color='red'>[I-D.ietf-pce-sr-p2mp-policy],</font></strike>
+   <strong><font color='green'>[SR-P2MP-PCEP],</font></strong> BGP, NetConf, <strike><font color='red'>etc,.</font></strike> <strong><font color='green'>etc.,</font></strong> which are outside the scope of
+   this document.
 
    An ingress PE creates a CP of an SR P2MP Policy in the SR P2MP Policy
    module upon provisioning of the MVPN or EVPN module for SR P2MP
@@ -609,7 +626,7 @@ Table of Contents
    Note, the Color Extended Community is not used with MVPN SR P2MP
    P-tunnel.  For MVPN with SR P2MP P-tunnel, the ingress PE dictates
    the traffic engineering treatment by specifying the constraints and
-   the metric optimization in the CP of the SR P2MP policy corresponding
+   the metric optimization in the CP of the SR P2MP <strike><font color='red'>policy</font></strike> <strong><font color='green'>Policy</font></strong> corresponding
    to the P-tunnel on the ingress PE . This is necessary because packets
    are replicated in the PTI and therefore it is not possible to have
    differing traffic engineering treatment towards each egress PE (Leaf
@@ -918,7 +935,7 @@ Table of Contents
    Note, the Color Extended Community is not used with EVPN SR P2MP
    P-tunnel.  For EVPN with SR P2MP P-tunnel, the ingress PE dictates
    the traffic engineering treatment by specifying the constraints and
-   the metric optimization in the CP of the SR P2MP policy corresponding
+   the metric optimization in the CP of the SR P2MP <strike><font color='red'>policy</font></strike> <strong><font color='green'>Policy</font></strong> corresponding
    to the P-tunnel on the ingress PE . This is necessary because packets
    are replicated in the PTI and therefore it is not possible to have
    differing traffic engineering treatment towards each egress PE (Leaf
